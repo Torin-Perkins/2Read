@@ -1,0 +1,49 @@
+﻿@model IEnumerable<_2Read.Models.Book>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<div class="container">
+    <h2>Book List</h2>
+    <button class="btn btn-info"><a asp-action="Create" class="text-white">Add New Book</a></button>
+    <div>
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Author)
+                    </th>
+                    <th>
+                        <span>Action</span>
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(m => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => item.Author)
+                        </td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success btn-sm text-white">Edit</a>
+
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>No books available</p>
+        }
+    </div>
+</div>
+
